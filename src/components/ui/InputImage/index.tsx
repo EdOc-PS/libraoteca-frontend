@@ -1,12 +1,10 @@
 import { useRef, useState } from "react";
-import { Cancel01Icon, Image01Icon } from "@hugeicons/core-free-icons";
+import { Cancel02Icon, Image01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { toast } from "sonner";
 
 interface InputImageProps {
-    /** URL de preview inicial (ex: imagem já salva em modo edição) */
     initialPreview?: string;
-    /** Texto auxiliar exibido abaixo do título na drop zone */
     description?: string;
     onChange: (file: File | null) => void;
 }
@@ -14,7 +12,7 @@ interface InputImageProps {
 const ACCEPTED = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
 
 const InputImage = ({ initialPreview, description, onChange }: InputImageProps) => {
-    const [file, setFile] = useState<File | null>(null);
+    const [file, setFile]       = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(initialPreview ?? null);
     const [dragging, setDragging] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -44,16 +42,16 @@ const InputImage = ({ initialPreview, description, onChange }: InputImageProps) 
     };
 
     return (
-        <div className="flex flex-col gap-0">
+        <div>
             {preview ? (
-                <div className="relative w-full aspect-video rounded-2xl overflow-hidden border-2 border-cloud-200 bg-neutral-50">
+                <div className="relative w-full rounded-2xl overflow-hidden border-2 border-cloud-200 bg-neutral-50" style={{ height: 160 }}>
                     <img src={preview} alt="Preview" className="w-full h-full object-contain" />
                     <button
                         type="button"
                         onClick={handleRemove}
                         className="absolute top-2 right-2 p-1.5 cursor-pointer rounded-full duration-300 bg-cloud-100 text-cloud-500 hover:bg-cloud-300/50"
                     >
-                        <HugeiconsIcon icon={Cancel01Icon} size={16} />
+                        <HugeiconsIcon icon={Cancel02Icon} size={16} />
                     </button>
                     {file && (
                         <span className="absolute bottom-2 left-2 text-xs bg-black/50 text-white px-2 py-0.5 rounded-full">
@@ -71,12 +69,12 @@ const InputImage = ({ initialPreview, description, onChange }: InputImageProps) 
                         w-full py-8 rounded-2xl border-2 border-dashed cursor-pointer
                         flex flex-col items-center justify-center gap-2 transition-all
                         ${dragging
-                            ? "border-campfire-400 bg-campfire-50"
+                            ? "border-sunflower-400 bg-sunflower-100"
                             : "border-cloud-400/30 bg-cloud-100 hover:border-sunflower-400 hover:bg-sunflower-100"
                         }
                     `}
                 >
-                    <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-campfire-200">
+                    <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-campfire-100">
                         <HugeiconsIcon icon={Image01Icon} size={24} className="text-campfire-500" />
                     </span>
                     <div className="text-center">
