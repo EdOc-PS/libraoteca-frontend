@@ -39,6 +39,16 @@ Testes unitários do back (a partir de `sinaliza-backend`):
 npx jest --config src/teste/jest.config.js
 ```
 
+Testes de integração do back, abordagem Bottom-up (a partir de `sinaliza-backend`, com o banco de testes no ar):
+
+```bash
+npx jest --config src/teste/integracao/jest.config.js --runInBand
+```
+
+- N1 `01-repositorio`: SignRepository + Prisma + PostgreSQL
+- N2 `02-servico`: SignService + N1
+- N3 `03-api`: aplicação NestJS inteira por HTTP (Supertest) + N2
+
 ## Resultados
 
 - Relatório navegável: `npx playwright show-report src/teste/relatorio`
