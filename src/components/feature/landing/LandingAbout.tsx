@@ -25,6 +25,11 @@ const REFERENCIAS = [
         url: "https://www.ines.gov.br/dicionario-de-libras/",
     },
     {
+        nome: "Dicionário de Libras",
+        instituicao: "Universidade Federal de Viçosa (UFV)",
+        url: "https://sistemas.cead.ufv.br/capes/dicionario/",
+    },
+    {
         nome: "Acessibilidade Brasil",
         instituicao: "Dicionário de Libras on-line",
         url: "https://www.acessobrasil.org.br/libras/",
