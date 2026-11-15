@@ -8,7 +8,7 @@ import { toast } from "sonner";
  */
 declare module "@tanstack/react-query" {
     interface Register {
-        queryMeta: { errorMessage?: string };
+        queryMeta: { errorMessage?: string; silent?: boolean };
         mutationMeta: { errorMessage?: string };
     }
 }
@@ -25,6 +25,7 @@ export const queryClient = new QueryClient({
     // passe silenciosa.
     queryCache: new QueryCache({
         onError: (error, query) => {
+            if (query.meta?.silent) return;
             const label = query.meta?.errorMessage ?? "Falha ao carregar dados";
             toast.error(`${label}: ${error.message}`);
         },

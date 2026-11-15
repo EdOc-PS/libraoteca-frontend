@@ -36,7 +36,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
     },
 ];
 
-const linkClass = "text-sm text-cloud-500 transition-colors duration-300 ease-out hover:text-campfire-600";
+const linkClass = "text-sm text-white/75 transition-colors duration-300 ease-out hover:text-campfire-500";
 
 function FooterAnchor({ label, to, external }: FooterLink) {
     if (external) {
@@ -48,21 +48,28 @@ function FooterAnchor({ label, to, external }: FooterLink) {
     return <Link to={to} className={linkClass}>{label}</Link>;
 }
 
-// Rodapé público — colunas de links, wordmark gigante sumindo e linha de base
+// Rodapé público — imagem de fundo escurecida, colunas de links e linha de base
+// A imagem fica em public/footer-bg.jpg; sem ela, o fundo é só o azul escuro
 export const LandingFooter = () => (
-    <footer className="overflow-hidden bg-cloud-100">
-        <div className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
+    <footer
+        className="relative overflow-hidden bg-cloud-700 bg-cover bg-center"
+        style={{ backgroundImage: "url('/footer-bg.jpg')" }}
+    >
+        {/* Camada escura por cima da imagem, para o texto ficar legível */}
+        <div aria-hidden className="absolute inset-0 bg-cloud-700/85" />
+
+        <div className="relative mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
                 {/* Marca */}
                 <div className="col-span-2 flex flex-col gap-4 md:col-span-1">
                     <div className="flex items-center gap-1.5">
-                        <img src={logo} alt="" className="h-8 w-8" />
-                        <span className="font-baskerville text-lg font-semibold text-cloud-600">Sinaliza</span>
+                        <img src={logo} alt="" className="h-8 w-8 brightness-0 invert" />
+                        <span className="font-baskerville text-lg font-semibold text-white">Sinaliza</span>
                     </div>
-                    <p className="max-w-xs text-sm leading-relaxed text-cloud-500/75">
+                    <p className="max-w-xs text-sm leading-relaxed text-white/70">
                         Repositório de sinais em Libras para intérpretes, alunos e professores do IFMG.
                     </p>
-                    <span className="flex items-center gap-2 text-xs text-cloud-400">
+                    <span className="flex items-center gap-2 text-xs text-white/60">
                         <span className="h-1.5 w-1.5 rounded-full bg-lime-500" />
                         Repositório público no ar
                     </span>
@@ -70,7 +77,7 @@ export const LandingFooter = () => (
 
                 {columns.map((col) => (
                     <div key={col.title} className="flex flex-col gap-3.5">
-                        <h3 className="mb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-cloud-400">
+                        <h3 className="mb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/50">
                             {col.title}
                         </h3>
                         {col.links.map((link) => (
@@ -81,20 +88,13 @@ export const LandingFooter = () => (
             </div>
         </div>
 
-        {/* Wordmark gigante — sai do fluxo das colunas e some em degradê */}
-        <div aria-hidden className="mx-auto mt-16 max-w-7xl select-none px-2 sm:mt-20">
-            <p className="footer-wordmark text-center font-baskerville text-[22vw] leading-[0.8] tracking-tight xl:text-[17rem]">
-                Sinaliza
-            </p>
-        </div>
-
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-3 border-t border-cloud-300/70 py-6 text-xs text-cloud-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col gap-3 border-t border-white/15 py-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
                 <p>© {new Date().getFullYear()} Sinaliza · Feito por Eduardo Octavio no IFMG</p>
                 <div className="flex gap-5">
-                    <Link to="/public-glossary" className="transition-colors duration-300 ease-out hover:text-cloud-600">Repositório</Link>
-                    <a href="/#sobre" className="transition-colors duration-300 ease-out hover:text-cloud-600">Sobre</a>
-                    <Link to="/auth/login" className="transition-colors duration-300 ease-out hover:text-cloud-600">Entrar</Link>
+                    <Link to="/public-glossary" className="transition-colors duration-300 ease-out hover:text-white">Repositório</Link>
+                    <a href="/#sobre" className="transition-colors duration-300 ease-out hover:text-white">Sobre</a>
+                    <Link to="/auth/login" className="transition-colors duration-300 ease-out hover:text-white">Entrar</Link>
                 </div>
             </div>
         </div>

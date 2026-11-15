@@ -9,6 +9,7 @@ import { GLOSSARY } from "@routes/signs";
 import { CardMemphisBackground } from "@components/feature/classroom/CardMemphisBackground";
 import ifmgLogo from "@/assets/images/logo/ifmg-vertical.png";
 import WordReveal from "./WordReveal";
+import RollingNumber from "./RollingNumber";
 
 type PublicStats = { signs: number; publicSigns: number; handConfigs: number };
 
@@ -44,6 +45,8 @@ export const LandingAbout = () => {
         queryKey: queryKeys.glossary.stats(),
         queryFn: () => unwrap(GetRequest<PublicStats>(GLOSSARY.STATS())),
         staleTime: 10 * 60_000,
+        // Na landing, uma falha só deixa os cards com "—", sem aviso de erro
+        meta: { silent: true },
     });
 
     const numeros = [
@@ -85,7 +88,7 @@ export const LandingAbout = () => {
                     {numeros.map(({ valor, rotulo }) => (
                         <div key={rotulo} className="rounded-3xl bg-cloud-100 px-6 py-8">
                             <p className="font-baskerville text-4xl font-semibold text-cloud-600 sm:text-5xl">
-                                {valor === undefined ? "—" : valor.toLocaleString("pt-BR")}
+                                {valor === undefined ? "—" : <RollingNumber value={valor} />}
                             </p>
                             <p className="mt-2 text-sm text-cloud-500/75">{rotulo}</p>
                         </div>
