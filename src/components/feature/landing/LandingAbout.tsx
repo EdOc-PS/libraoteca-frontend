@@ -10,30 +10,32 @@ import { CardMemphisBackground } from "@components/feature/classroom/CardMemphis
 import ifmgLogo from "@/assets/images/logo/ifmg-vertical.png";
 import WordReveal from "./WordReveal";
 import RollingNumber from "./RollingNumber";
+import refUff from "@/assets/images/referencias/uff.jpg";
+import refInes from "@/assets/images/referencias/ines.jpg";
+import refUfv from "@/assets/images/referencias/ufv.jpg";
 
-type PublicStats = { signs: number; publicSigns: number; handConfigs: number };
+type PublicStats = { signs: number; publicSigns: number };
 
-// Portais de Libras que inspiraram o Sinaliza (os sinais da plataforma não vêm deles)
+// Portais de Libras que inspiraram o Sinaliza (os sinais da plataforma não vêm deles).
+// As imagens são capturas da página inicial de cada portal.
 const REFERENCIAS = [
     {
         nome: "Libras Acadêmica",
         instituicao: "Universidade Federal Fluminense (UFF)",
         url: "https://librasacademica.uff.br/",
+        imagem: refUff,
     },
     {
         nome: "Dicionário da Língua Brasileira de Sinais",
-        instituicao: "Instituto Nacional de Educação de Surdos (INES)",
-        url: "https://www.ines.gov.br/dicionario-de-libras/",
+        instituicao: "INES e Acessibilidade Brasil",
+        url: "https://dicionario.ines.gov.br/",
+        imagem: refInes,
     },
     {
         nome: "Dicionário de Libras",
         instituicao: "Universidade Federal de Viçosa (UFV)",
         url: "https://sistemas.cead.ufv.br/capes/dicionario/",
-    },
-    {
-        nome: "Acessibilidade Brasil",
-        instituicao: "Dicionário de Libras on-line",
-        url: "https://www.acessobrasil.org.br/libras/",
+        imagem: refUfv,
     },
 ];
 
@@ -52,7 +54,6 @@ export const LandingAbout = () => {
     const numeros = [
         { valor: stats?.signs, rotulo: "sinais cadastrados" },
         { valor: stats?.publicSigns, rotulo: "sinais no glossário público" },
-        { valor: stats?.handConfigs, rotulo: "configurações de mão" },
     ];
 
     return (
@@ -84,7 +85,7 @@ export const LandingAbout = () => {
                 </div>
 
                 {/* Números da plataforma */}
-                <div className="reveal mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div className="reveal mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {numeros.map(({ valor, rotulo }) => (
                         <div key={rotulo} className="rounded-3xl bg-cloud-100 px-6 py-8">
                             <p className="font-baskerville text-4xl font-semibold text-cloud-600 sm:text-5xl">
@@ -108,10 +109,20 @@ export const LandingAbout = () => {
                                     href={ref.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block h-full rounded-3xl border border-cloud-200 px-6 py-5 transition-colors duration-300 ease-out hover:border-campfire-500 hover:bg-campfire-100"
+                                    className="group block h-full overflow-hidden rounded-3xl border border-cloud-200 transition-colors duration-300 ease-out hover:border-campfire-500 hover:bg-campfire-100"
                                 >
-                                    <p className="font-semibold text-cloud-600">{ref.nome}</p>
-                                    <p className="mt-1 text-sm text-cloud-500/75">{ref.instituicao}</p>
+                                    <div className="aspect-video overflow-hidden bg-cloud-100">
+                                        <img
+                                            src={ref.imagem}
+                                            alt={`Página inicial do ${ref.nome}`}
+                                            loading="lazy"
+                                            className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div className="px-6 py-5">
+                                        <p className="font-semibold text-cloud-600">{ref.nome}</p>
+                                        <p className="mt-1 text-sm text-cloud-500/75">{ref.instituicao}</p>
+                                    </div>
                                 </a>
                             </li>
                         ))}
