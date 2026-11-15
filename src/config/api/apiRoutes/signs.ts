@@ -8,6 +8,7 @@ export const SIGNS = {
     PROMOTE:          (id: string) => `sign/${id}/promote`,
     PROMOTIONS:       ()           => `sign/promotions`,
     MINE:             ()           => `sign/mine`,
+    RECENT:           ()           => `sign/recent`,
     REVIEW_PROMOTION: (id: string) => `sign/${id}/promotion`,
     UNPROMOTE:        (id: string) => `sign/${id}/unpromote`,
 }
@@ -16,4 +17,5 @@ export const SIGNS = {
 export const GLOSSARY = {
     LIST:    () => `glossary`,
     FILTERS: () => `glossary/filters`,
+    STATS:   () => `glossary/stats`,
 }

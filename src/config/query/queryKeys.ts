@@ -35,6 +35,7 @@ export const queryKeys = {
         options: () => ["signs", "options"] as const,
         promotions: () => ["signs", "promotions"] as const,
         mine: () => ["signs", "mine"] as const,
+        recent: () => ["signs", "recent"] as const,
     },
     dashboard: {
         all: ["dashboard"] as const,
@@ -55,6 +56,7 @@ export const queryKeys = {
     glossary: {
         all: ["glossary"] as const,
         filters: () => ["glossary", "filters"] as const,
+        stats: () => ["glossary", "stats"] as const,
         // Os filtros entram na chave: mudar um deles é outro cache e o
         // TanStack Query refaz o fetch sozinho, sem useEffect observando.
         list: (filters: { categoryId?: string; handConfigId?: string; glossaryDisciplineId?: string }) =>

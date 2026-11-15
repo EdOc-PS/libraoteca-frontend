@@ -10,6 +10,7 @@ import { HandConfigForm } from "@components/feature/workspace/HandConfigForm";
 import { VisualKeyboard, type HandConfigTypeForm } from "@components/feature/workspace/VisualKeyboard";
 import { PromotionSection } from "@components/feature/workspace/PromotionSection";
 import { MySignsSection } from "@components/feature/workspace/MySignsSection";
+import { RecentSignsSection } from "@components/feature/workspace/RecentSignsSection";
 import { CategorySection } from "@components/feature/workspace/CategorySection";
 import { GlossaryDisciplineSection } from "@components/feature/workspace/GlossaryDisciplineSection";
 
@@ -63,6 +64,7 @@ const WorkspacePage = () => {
                 <LoadingGroup>
                     <div className="flex flex-col gap-10">
                         <MySignsSection />
+                        <RecentSignsSection />
 
                         {/* Teclado único: só o gestor edita, exclui e cria pelo card "+" */}
                         <div className="bg-white rounded-3xl p-6">
@@ -92,6 +94,7 @@ const WorkspacePage = () => {
                     onSuccess={() => {
                         setSignModal(false);
                         queryClient.invalidateQueries({ queryKey: queryKeys.signs.mine() });
+                        queryClient.invalidateQueries({ queryKey: queryKeys.signs.recent() });
                     }}
                 />
             </Modal>
