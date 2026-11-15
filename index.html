@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo/logo-simples-variante1.png" />
@@ -9,5 +9,21 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- VLibras: tradutor de Libras do governo federal (gratuito) -->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
+    <script>
+      // Carrega o script só depois da página pronta; se o site do governo cair, nada quebra
+      (function () {
+        var script = document.createElement("script");
+        script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
+        script.async = true;
+        script.onload = function () { new window.VLibras.Widget("https://vlibras.gov.br/app"); };
+        document.body.appendChild(script);
+      })();
+    </script>
   </body>
 </html>
