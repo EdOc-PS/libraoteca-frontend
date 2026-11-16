@@ -84,7 +84,7 @@ test.describe('Primeiro acesso com senha temporária', () => {
         await tour.getByRole('button', { name: 'Próximo' }).click();
 
         await expect(aviso(page, 'Senha criada com sucesso!')).toBeVisible();
-        await expect(tour.getByRole('heading', { name: 'Como funciona o Sinaliza' })).toBeVisible();
+        await expect(tour.getByRole('heading', { name: 'Como funciona a Libraoteca' })).toBeVisible();
         await expect(tour.getByRole('button', { name: 'Pular' })).toHaveCount(0);
 
         await tour.getByRole('button', { name: 'Próximo' }).click();
@@ -123,11 +123,11 @@ test.describe('Primeiro acesso com senha temporária', () => {
 
         await page.getByRole('button', { name: 'Ajuda: como usar a plataforma' }).first().click();
         const ajuda = modal(page);
-        await expect(ajuda.getByRole('heading', { name: 'Como funciona o Sinaliza' })).toBeVisible();
+        await expect(ajuda.getByRole('heading', { name: 'Como funciona a Libraoteca' })).toBeVisible();
         await expect(ajuda.getByRole('heading', { name: /Olá,/ })).toHaveCount(0);
 
         await ajuda.getByRole('button', { name: 'Pular' }).click();
-        await expect(page.getByRole('heading', { name: 'Como funciona o Sinaliza' })).toHaveCount(0);
+        await expect(page.getByRole('heading', { name: 'Como funciona a Libraoteca' })).toHaveCount(0);
 
         await page.getByRole('button', { name: 'Ajuda: como usar a plataforma' }).first().click();
         await modal(page).getByRole('button', { name: 'Próximo' }).click();

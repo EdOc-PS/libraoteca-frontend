@@ -64,7 +64,7 @@ export const LandingFooter = () => (
                 <div className="col-span-2 flex flex-col gap-4 md:col-span-1">
                     <div className="flex items-center gap-1.5">
                         <img src={logo} alt="" className="h-8 w-8 brightness-0 invert" />
-                        <span className="font-baskerville text-lg font-semibold text-white">Sinaliza</span>
+                        <span className="font-baskerville text-lg font-semibold text-white">Libraoteca</span>
                     </div>
                     <p className="max-w-xs text-sm leading-relaxed text-white/70">
                         Repositório de sinais em Libras para intérpretes, alunos e professores do IFMG.
@@ -90,7 +90,7 @@ export const LandingFooter = () => (
 
         <div className="relative mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col gap-3 border-t border-white/15 py-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
-                <p>© {new Date().getFullYear()} Sinaliza · Feito por Eduardo Octavio no IFMG</p>
+                <p>© {new Date().getFullYear()} Libraoteca · Feito por Eduardo Octavio no IFMG</p>
                 <div className="flex gap-5">
                     <Link to="/public-glossary" className="transition-colors duration-300 ease-out hover:text-white">Repositório</Link>
                     <a href="/#sobre" className="transition-colors duration-300 ease-out hover:text-white">Sobre</a>

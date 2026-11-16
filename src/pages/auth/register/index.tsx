@@ -171,8 +171,8 @@ const RegisterPage = () => {
             <div className='flex flex-col items-center gap-3 sm:gap-4 w-full'>
                 {/* Logo */}
                 <div className='flex items-center'>
-                    <img src={logoImg} alt="Logo do Sinaliza" className='w-20 h-20 sm:w-20 sm:h-20' />
-                    <h1 className='font-baskerville text-2xl sm:text-3xl font-semibold text-cloud-500'>Sinaliza</h1>
+                    <img src={logoImg} alt="Logo da Libraoteca" className='w-20 h-20 sm:w-20 sm:h-20' />
+                    <h1 className='font-baskerville text-2xl sm:text-3xl font-semibold text-cloud-500'>Libraoteca</h1>
                 </div>
 
                 {/* Formulário de Registro */}

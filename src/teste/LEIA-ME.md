@@ -1,4 +1,4 @@
-# Testes do Sinaliza
+# Testes da Libraoteca
 
 Esta pasta não entra no Git (está em `.git/info/exclude`). Os testes do back ficam em `sinaliza-backend/src/teste`.
 
