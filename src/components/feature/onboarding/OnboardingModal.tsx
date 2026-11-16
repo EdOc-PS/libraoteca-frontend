@@ -231,8 +231,12 @@ export const OnboardingModal = ({ open, onClose, helpOnly = false }: OnboardingM
     );
 
     const allSteps = buildSteps(user, passwordBody, helpOnly);
-    const steps = passwordOnly ? [allSteps[PASSWORD_STEP_INDEX]] : allSteps;
-    const step = steps[view];
+    // O estado da abertura anterior ainda vale no 1º render (o useEffect só reseta depois).
+    // Ex.: após trocar a senha pelo fluxo "só senha", abrir a ajuda (?) montava a lista
+    // sem o passo de senha e `step` ficava undefined. Por isso as duas proteções abaixo.
+    const showPasswordOnly = passwordOnly && !helpOnly && !!allSteps[PASSWORD_STEP_INDEX];
+    const steps = showPasswordOnly ? [allSteps[PASSWORD_STEP_INDEX]] : allSteps;
+    const step = steps[Math.min(view, steps.length - 1)];
     const isLast = view === steps.length - 1;
     const onPasswordStep = hasPasswordStep && (passwordOnly || view === PASSWORD_STEP_INDEX);
 
