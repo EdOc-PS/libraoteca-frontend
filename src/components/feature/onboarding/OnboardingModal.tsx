@@ -104,7 +104,7 @@ const buildSteps = (user: User, passwordBody: ReactNode | null, helpOnly: boolea
                         <HugeiconsIcon icon={SignLanguageCIcon} size={30} />
                     </span>
                     <p>
-                        Antes de começar, preparamos um tour rápido para você conhecer a Libraoteca
+                        Antes de começar, preparamos um tour rápido para você conhecer a Librasteca
                         e entender como aproveitar melhor a plataforma.
                     </p>
                     <p>Leva menos de um minuto — vamos lá?</p>
@@ -112,12 +112,12 @@ const buildSteps = (user: User, passwordBody: ReactNode | null, helpOnly: boolea
             ),
         },
         {
-            title: "Como funciona a Libraoteca",
+            title: "Como funciona a Librasteca",
             subtitle: "Um repositório colaborativo de sinais em Libras",
             body: (
                 <div className="flex flex-col gap-4 text-sm leading-relaxed text-cloud-600">
                     <p>
-                        A Libraoteca reúne, num só lugar, os sinais em Libras usados dentro da sala de aula —
+                        A Librasteca reúne, num só lugar, os sinais em Libras usados dentro da sala de aula —
                         gravados em vídeo, organizados e fáceis de encontrar.
                     </p>
                     <ul className="flex flex-col gap-3">

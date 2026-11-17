@@ -26,7 +26,7 @@ export const LandingHeader = ({ showAnchors = false, background = "bg-white" }: 
                 {/* Logo + descritor */}
                 <Link to="/" className="flex items-center gap-2 transition-opacity duration-300 ease-out hover:opacity-80">
                     <img src={logo} alt="" className="h-10 w-10" />
-                    <span className="font-baskerville text-xl font-semibold text-cloud-600">Libraoteca</span>
+                    <span className="font-baskerville text-xl font-semibold text-cloud-600">Librasteca</span>
                 </Link>
 
                 <div className="flex items-center gap-1 sm:gap-2">

@@ -16,7 +16,7 @@ import refUfv from "@/assets/images/referencias/ufv.jpg";
 
 type PublicStats = { signs: number; publicSigns: number };
 
-// Portais de Libras que inspiraram a Libraoteca (os sinais da plataforma não vêm deles).
+// Portais de Libras que inspiraram a Librasteca (os sinais da plataforma não vêm deles).
 // As imagens são capturas da página inicial de cada portal.
 const REFERENCIAS = [
     {
@@ -62,12 +62,12 @@ export const LandingAbout = () => {
                 {/* Contexto do projeto */}
                 <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-center md:gap-x-12 md:gap-y-6">
                     <h3 className="reveal font-baskerville font-semibold md:col-span-2 text-2xl text-cloud-600">
-                        Por que <em className="font-baskerville text-lime-500">Libraoteca</em>?
+                        Por que <em className="font-baskerville text-lime-500">Librasteca</em>?
                     </h3>
 
                     <div className="reveal flex max-w-3xl flex-col gap-4 text-sm sm:text-base leading-relaxed text-cloud-500/75" style={{ transitionDelay: "90ms" }}>
                         <p>
-                            A Libraoteca nasceu como Trabalho de Conclusão de Curso no{" "}
+                            A Librasteca nasceu como Trabalho de Conclusão de Curso no{" "}
                             <strong className="font-semibold text-cloud-600">IFMG — Campus Ouro Branco</strong>.
                         </p>
                         <p>
@@ -100,7 +100,7 @@ export const LandingAbout = () => {
                 <div className="reveal mt-16">
                     <h3 className="font-baskerville text-2xl font-semibold text-cloud-600">Referências</h3>
                     <p className="mt-3 max-w-3xl text-sm leading-relaxed text-cloud-500/75 sm:text-base">
-                        A Libraoteca foi inspirada em outros portais de acesso à Libras. Os sinais da plataforma são cadastrados pelos próprios educadores e intérpretes, mas estes projetos serviram de referência para a ideia e a organização do repositório.
+                        A Librasteca foi inspirada em outros portais de acesso à Libras. Os sinais da plataforma são cadastrados pelos próprios educadores e intérpretes, mas estes projetos serviram de referência para a ideia e a organização do repositório.
                     </p>
                     <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {REFERENCIAS.map((ref) => (

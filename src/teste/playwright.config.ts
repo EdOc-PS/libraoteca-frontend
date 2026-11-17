@@ -1,12 +1,12 @@
 // @ts-nocheck
-// Testes end-to-end. Rodar a partir de sinaliza-frontend:
+// Testes end-to-end. Rodar a partir de librasteca-frontend:
 //   npx playwright test -c src/teste/playwright.config.ts
 // Sobe a API e o front locais, sempre contra o banco local de testes (porta 5433).
 import path from 'path';
 import { defineConfig, devices } from '@playwright/test';
 
 const FRONT = process.cwd();
-const BACK = path.resolve(FRONT, '../sinaliza-backend');
+const BACK = path.resolve(FRONT, '../librasteca-backend');
 
 export const TEST_DATABASE_URL = 'postgresql://postgres:postgres@localhost:5433/sinaliza_teste';
 export const API_URL = 'http://localhost:3004';

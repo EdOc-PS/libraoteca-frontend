@@ -1,6 +1,6 @@
-# Testes da Libraoteca
+# Testes da Librasteca
 
-Esta pasta não entra no Git (está em `.git/info/exclude`). Os testes do back ficam em `sinaliza-backend/src/teste`.
+Esta pasta não entra no Git (está em `.git/info/exclude`). Os testes do back ficam em `librasteca-backend/src/teste`.
 
 ## Antes de rodar
 
@@ -21,25 +21,25 @@ npm install --no-save @playwright/test
 
 ## Rodar
 
-Testes end-to-end (a partir de `sinaliza-frontend`). Sobem a API e o front locais sozinhos:
+Testes end-to-end (a partir de `librasteca-frontend`). Sobem a API e o front locais sozinhos:
 
 ```bash
 npx playwright test -c src/teste/playwright.config.ts
 ```
 
-Testes unitários do front (a partir de `sinaliza-frontend`):
+Testes unitários do front (a partir de `librasteca-frontend`):
 
 ```bash
 npx playwright test -c src/teste/playwright.unit.config.ts
 ```
 
-Testes unitários do back (a partir de `sinaliza-backend`):
+Testes unitários do back (a partir de `librasteca-backend`):
 
 ```bash
 npx jest --config src/teste/jest.config.js
 ```
 
-Testes de integração do back, abordagem Bottom-up (a partir de `sinaliza-backend`, com o banco de testes no ar):
+Testes de integração do back, abordagem Bottom-up (a partir de `librasteca-backend`, com o banco de testes no ar):
 
 ```bash
 npx jest --config src/teste/integracao/jest.config.js --runInBand

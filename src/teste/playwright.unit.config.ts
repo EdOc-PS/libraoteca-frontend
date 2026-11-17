@@ -1,5 +1,5 @@
 // @ts-nocheck
-// Testes unitários do front (funções puras, sem navegador). Rodar a partir de sinaliza-frontend:
+// Testes unitários do front (funções puras, sem navegador). Rodar a partir de librasteca-frontend:
 //   npx playwright test -c src/teste/playwright.unit.config.ts
 import { defineConfig } from '@playwright/test';
 
