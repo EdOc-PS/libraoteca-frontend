@@ -51,7 +51,7 @@ interface SignDetail {
     id: string;
     name: string;
     category?: { id: string; name: string; value: string } | null;
-    handConfigId: string;
+    handConfigs?: { id: string; name: string }[] | null;
     classrooms?: { id: string; name: string }[] | null;
     tags: string[];
     examplePt?: string | null;
@@ -69,7 +69,7 @@ export const SignForm = ({ signId, onClose, onSuccess }: SignFormProps) => {
     const [name, setName]                         = useState("");
     const [categoryId, setCategoryId]             = useState("");
     const [classroomIds, setClassroomIds]       = useState<string[]>([]);
-    const [handConfigId, setHandConfigId]         = useState("");
+    const [handConfigIds, setHandConfigIds]       = useState<string[]>([]);
     const [tags, setTags]                         = useState<string[]>([]);
     const [examplePt, setExamplePt]               = useState("");
     const [exampleLibras, setExampleLibras]       = useState("");
@@ -112,7 +112,7 @@ export const SignForm = ({ signId, onClose, onSuccess }: SignFormProps) => {
         const formData = new FormData();
         formData.append("name", name.trim());
         formData.append("categoryId", categoryId);
-        formData.append("handConfigId", handConfigId);
+        formData.append("handConfigIds", handConfigIds.join(","));
 
         // Turmas (m2m). Em edição, sempre envia (mesmo vazio) para permitir remover todas.
         if (classroomIds.length > 0) {
@@ -152,7 +152,7 @@ export const SignForm = ({ signId, onClose, onSuccess }: SignFormProps) => {
         nameValid &&
         !!categoryId &&
         classroomIds.length > 0 &&
-        !!handConfigId;
+        handConfigIds.length > 0;
 
     // Step 2: tags (obrigatório pelo menos uma)
     const isTagsValid = tags.length > 0;
@@ -190,7 +190,7 @@ export const SignForm = ({ signId, onClose, onSuccess }: SignFormProps) => {
         const s: SignDetail = signData;
         setName(s.name);
         setCategoryId(s.category?.id ?? "");
-        setHandConfigId(s.handConfigId);
+        setHandConfigIds((s.handConfigs ?? []).map((h) => h.id));
         setClassroomIds((s.classrooms ?? []).map((c) => c.id));
         setTags(s.tags ?? []);
         setExamplePt(s.examplePt ?? "");
@@ -316,8 +316,13 @@ export const SignForm = ({ signId, onClose, onSuccess }: SignFormProps) => {
 
                     {/* Config. de mão (teclado visual) */}
                     <div className="flex flex-col gap-1.5">
-                        <Label isRequired>Config. de mão</Label>
-                        <HandConfigPicker value={handConfigId} onChange={setHandConfigId} />
+                        <Label isRequired>Configs. de mão</Label>
+                        <p className="text-xs text-neutral-400 -mt-1">Selecione todas as configurações que compõem o sinal</p>
+                        <HandConfigPicker
+                            selectedIds={handConfigIds}
+                            onToggle={(id) => setHandConfigIds((prev) =>
+                                prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id])}
+                        />
                     </div>
 
                     <div className="flex gap-3 pt-1">

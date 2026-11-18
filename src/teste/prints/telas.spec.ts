@@ -39,7 +39,7 @@ test.beforeAll(async ({ request }) => {
             method: 'POST',
             headers: { Authorization: `Bearer ${professor}` },
             multipart: {
-                name: nome, categoryId, handConfigId, classroomIds: turma.id, anotherUrl: YOUTUBE,
+                name: nome, categoryId, handConfigIds: handConfigId, classroomIds: turma.id, anotherUrl: YOUTUBE,
                 tags: 'tecnologia', examplePt: `Exemplo de uso de ${nome.toLowerCase()} ${i + 1}.`,
             },
         });

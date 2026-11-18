@@ -47,7 +47,6 @@ interface SignDetail {
     name: string;
     slug: string;
     category?: CategorySlim | null;
-    handConfigId: string;
     videoUrl?: string | null;
     anotherUrl?: string | null;
     imgUrl?: string | null;
@@ -57,7 +56,7 @@ interface SignDetail {
     tags: string[];
     creatorId: string;
     globalStatus?: "PRIVATE" | "PENDING" | "PUBLIC" | "REJECTED";
-    handConfig?: { id: string; name: string; imgUrl?: string | null } | null;
+    handConfigs?: { id: string; name: string; imgUrl?: string | null }[] | null;
     classrooms?: { id: string; name: string }[] | null;
 }
 
@@ -226,33 +225,13 @@ const SignDetailPage = () => {
                         )}
                     </div>
 
-                    {/* Cards laterais: imagem do sinal + configuração de mão */}
-                    <div className="flex flex-col gap-4">
-                        {/* Imagem cadastrada — proporção mais larga que alta */}
-                        <div className="aspect-video overflow-hidden rounded-3xl bg-cloud-100 flex items-center justify-center">
-                            {sign.imgUrl ? (
-                                <img src={sign.imgUrl} alt={sign.name} className="h-full w-full object-cover" />
-                            ) : (
-                                <EmptyImage iconSize={28} />
-                            )}
-                        </div>
-
-                        {/* Configuração de mão */}
-                        <div className="flex flex-col gap-3 rounded-3xl bg-white p-4">
-                            <span className="text-sm font-semibold text-cloud-600">Configuração de mão</span>
-                            <div className="flex items-center gap-3">
-                                <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-cloud-100">
-                                    {sign.handConfig?.imgUrl ? (
-                                        <img src={sign.handConfig.imgUrl} alt={sign.handConfig.name} className="h-full w-full object-cover" />
-                                    ) : (
-                                        <EmptyImage iconSize={24} label="" />
-                                    )}
-                                </div>
-                                <span className="text-sm font-medium text-cloud-500">
-                                    {sign.handConfig?.name ?? "—"}
-                                </span>
-                            </div>
-                        </div>
+                    {/* Imagem do sinal — ocupa toda a altura ao lado do player */}
+                    <div className="aspect-[4/3] lg:aspect-auto lg:h-full overflow-hidden rounded-3xl bg-cloud-100 flex items-center justify-center">
+                        {sign.imgUrl ? (
+                            <img src={sign.imgUrl} alt={sign.name} className="h-full w-full object-cover" />
+                        ) : (
+                            <EmptyImage iconSize={28} />
+                        )}
                     </div>
                 </div>
 
@@ -347,6 +326,36 @@ const SignDetailPage = () => {
                         )}
                     </div>
                 </div>
+
+                {/* Configurações de mão — um sinal pode combinar várias; clicar busca sinais com ela */}
+                {sign.handConfigs && sign.handConfigs.length > 0 && (
+                    <div className="flex flex-col gap-3 rounded-3xl bg-white p-5">
+                        <span className="text-sm font-semibold text-cloud-600">
+                            {sign.handConfigs.length > 1 ? "Configurações de mão" : "Configuração de mão"}
+                        </span>
+                        <div className="flex flex-wrap gap-3">
+                            {sign.handConfigs.map((config) => (
+                                <button
+                                    key={config.id}
+                                    type="button"
+                                    onClick={() => navigate(`/search?handConfigId=${config.id}`)}
+                                    className="group flex w-24 flex-col items-center gap-1.5"
+                                >
+                                    <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-2xl border-2 border-transparent bg-cloud-100 transition-all group-hover:-translate-y-0.5 group-hover:border-campfire-300">
+                                        {config.imgUrl ? (
+                                            <img src={config.imgUrl} alt={config.name} className="h-full w-full object-cover" />
+                                        ) : (
+                                            <EmptyImage iconSize={24} label="" />
+                                        )}
+                                    </div>
+                                    <span className="w-full truncate text-center text-xs font-medium text-cloud-500">
+                                        {config.name}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 {/* Cards de descrição do movimento e exemplos */}
                 {(sign.movementDescription || sign.exampleLibras || sign.examplePt) && (

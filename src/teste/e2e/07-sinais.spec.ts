@@ -31,7 +31,7 @@ test.describe('Sinais', () => {
     let aluno: string;
     let gestor: string;
     let turmaId: string;
-    let opcoes: { categoryId: string; handConfigId: string };
+    let opcoes: { categoryId: string; handConfigIds: string };
     let sinal: { id: string; slug: string; name: string };
 
     test.beforeAll(async ({ request }) => {
@@ -46,7 +46,7 @@ test.describe('Sinais', () => {
 
         const maos = (await api(request, professor, 'GET', 'hand-config')).body.object;
         const categorias = (await api(request, professor, 'GET', 'category')).body.object;
-        opcoes = { categoryId: categorias[0].id, handConfigId: maos[0].id };
+        opcoes = { categoryId: categorias[0].id, handConfigIds: maos[0].id };
     });
 
     test('educador cria um sinal com link do YouTube', async ({ request }) => {
@@ -85,7 +85,7 @@ test.describe('Sinais', () => {
         expect(repetido.status, 'nome repetido').toBe(400);
 
         const maoInexistente = await criarSinal(request, professor, {
-            name: `Mão ${Date.now()}`, categoryId: opcoes.categoryId, handConfigId: '00000000-0000-0000-0000-000000000000', anotherUrl: YOUTUBE,
+            name: `Mão ${Date.now()}`, categoryId: opcoes.categoryId, handConfigIds: '00000000-0000-0000-0000-000000000000', anotherUrl: YOUTUBE,
         });
         expect(maoInexistente.status, 'configuração de mão inexistente').toBe(400);
 
@@ -212,7 +212,7 @@ test.describe('Promoção ao glossário', () => {
         const maos = (await api(request, professor, 'GET', 'hand-config')).body.object;
         const categorias = (await api(request, professor, 'GET', 'category')).body.object;
         const nome = `Glossário ${Date.now()}`;
-        const res = await criarSinal(request, professor, { name: nome, categoryId: categorias[0].id, handConfigId: maos[0].id, anotherUrl: YOUTUBE });
+        const res = await criarSinal(request, professor, { name: nome, categoryId: categorias[0].id, handConfigIds: maos[0].id, anotherUrl: YOUTUBE });
         sinal = { id: res.body.object.id, name: nome };
     });
 
